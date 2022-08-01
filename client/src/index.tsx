@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import ReactDOM from 'react-dom';
 import './app/layout/styles.css';
@@ -8,8 +7,15 @@ import { Router } from "react-router-dom";
 
 import { createBrowserHistory } from "history"
 import { StoreProvider } from './context/StoreContext';
+import { Provider } from 'react-redux';
+import { store } from './app/store/configureStore';
+import { fetchProductsAsync } from './feature/catalog/catalogSlice';
+
+
 
 export const history = createBrowserHistory();
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,10 +24,10 @@ const root = ReactDOM.createRoot(
 root.render(
 
   <Router history={history}>
-    <StoreProvider> 
-      <App />
-    </StoreProvider>
+      <Provider store={store}>
+        <App />
 
+      </Provider>
   </Router>
 );
 
