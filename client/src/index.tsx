@@ -6,10 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { Router } from "react-router-dom";
 
 import { createBrowserHistory } from "history"
-import { StoreProvider } from './context/StoreContext';
 import { Provider } from 'react-redux';
 import { store } from './app/store/configureStore';
-import { fetchProductsAsync } from './feature/catalog/catalogSlice';
 
 
 
