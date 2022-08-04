@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
 
@@ -9,7 +6,7 @@ namespace API.Extensions
 {
     public static class BasketExtensions
     {
-        public static BasketDto ToBasketDto(this Basket basket)
+        public static BasketDto MapBasketDto(this Basket basket)
         {
             return new BasketDto
             {
@@ -27,6 +24,6 @@ namespace API.Extensions
                 }).ToList()
             };
         }
-        
+
     }
 }
