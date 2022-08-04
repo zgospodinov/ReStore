@@ -75,10 +75,8 @@ export const basketSlice = createSlice({
 
             state.basket!.items[itemIndex].quantity -= quantity;
             if (state.basket?.items[itemIndex].quantity === 0) {
-                state.basket.items.slice(itemIndex, 1);
+                state.basket.items = state.basket.items.filter(function(item){return item.productId != productId});
             }
-            // TODO: basket does not remove item on delete button
-
             state.status = 'idle';
         });
         builder.addCase(removeBasketItemAsync.rejected, (state, action) => {
