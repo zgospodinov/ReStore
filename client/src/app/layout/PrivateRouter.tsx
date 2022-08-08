@@ -1,5 +1,5 @@
 import { ComponentType } from "react";
-import { Redirect, Route, RouteComponentProps, RouteProps } from "react-router-dom";
+import { Redirect, Route, RouteComponentProps, RouteProps, Switch } from "react-router-dom";
 import { useAppSelector } from "../store/configureStore";
 
 interface Props extends RouteProps{
@@ -11,7 +11,7 @@ export default function PrivateRoute({ component: Component, ...rest }: Props) {
     const {user} = useAppSelector(state => state.account);
     
     return (
-      <Route
+        <Route
         {...rest}
         render={props =>
           user ? (

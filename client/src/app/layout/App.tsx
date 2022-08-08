@@ -20,12 +20,14 @@ import Login from "../../feature/account/Login";
 import Register from "../../feature/account/Register";
 import { fetchCurrentUser } from "../../feature/account/accountSlice";
 import PrivateRoute from "./PrivateRouter";
+import OrdersPage from "../../feature/orders/OrdersPage";
+import OrderDetails from "../../feature/orders/OrderDetails";
 
 function App() {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
-  const initApp =useCallback(async () => {
+  const initApp = useCallback(async () => {
     try {
       await dispatch(fetchCurrentUser());
       await dispatch(fetchBasketAsync());
@@ -77,6 +79,8 @@ function App() {
           <Route path="/server-error" component={ServerError} />
           <Route path="/basket" component={BasketPage} />
           <PrivateRoute path="/checkout" component={CheckoutPage} />
+          <PrivateRoute exact path='/order' component={OrdersPage} />
+          <PrivateRoute path="/order/:id" component={OrderDetails} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route component={NotFound} />

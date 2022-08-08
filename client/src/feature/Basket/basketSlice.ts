@@ -23,17 +23,12 @@ export const addBasketItemAsync = createAsyncThunk<Basket, { productId: number, 
     })
 
 export const removeBasketItemAsync = createAsyncThunk<void, { productId: number, quantity: number, name?: string }>(
-    'basket/rmoveBasketItemAsync',
+    'basket/removeBasketItemAsync',
     async ({ productId, quantity }, thunkAPI) => {
         try {
             await agent.Basket.removeItem(productId, quantity);
         } catch (err: any) {
             return thunkAPI.rejectWithValue({ error: err.data })
-        }
-    },
-    {
-        condition: () => {
-            if (!getCookie('buyerId')) return false;
         }
     }
 )
@@ -75,7 +70,7 @@ export const basketSlice = createSlice({
 
             state.basket!.items[itemIndex].quantity -= quantity;
             if (state.basket?.items[itemIndex].quantity === 0) {
-                state.basket.items = state.basket.items.filter(function(item){return item.productId != productId});
+                state.basket.items = state.basket.items.filter(function (item) { return item.productId !== productId });
             }
             state.status = 'idle';
         });
