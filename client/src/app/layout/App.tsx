@@ -13,7 +13,6 @@ import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import BasketPage from "../../feature/Basket/BasketPage";
 import LoadingComponent from "./LoadingComponent";
-import CheckoutPage from "../../feature/checkout/CheckoutPage";
 import { useAppDispatch } from "../store/configureStore";
 import { fetchBasketAsync } from "../../feature/Basket/basketSlice";
 import Login from "../../feature/account/Login";
@@ -22,6 +21,7 @@ import { fetchCurrentUser } from "../../feature/account/accountSlice";
 import PrivateRoute from "./PrivateRouter";
 import OrdersPage from "../../feature/orders/OrdersPage";
 import OrderDetails from "../../feature/orders/OrderDetails";
+import CheckoutWrapper from "../../feature/checkout/CheckoutWrapper";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -78,7 +78,7 @@ function App() {
           <Route path="/contact" component={ContactPage} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/basket" component={BasketPage} />
-          <PrivateRoute path="/checkout" component={CheckoutPage} />
+          <PrivateRoute path="/checkout" component={CheckoutWrapper} />
           <PrivateRoute exact path='/order' component={OrdersPage} />
           <PrivateRoute path="/order/:id" component={OrderDetails} />
           <Route path="/login" component={Login} />

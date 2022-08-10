@@ -40,10 +40,11 @@ export default function OrderDetails() {
                 </Grid>
             </Grid>
 
-
             <BasketTable items={order?.orderItems as BasketItem[]} isBasket={false} />
             <Grid container>
-                <Grid item xs={6} />
+                <Grid item xs={6} >
+                    <Typography variant="h6" sx={{mt: 3}}>Shipping address: {order?.shippingAddress.address1}, {order?.shippingAddress.country} </Typography>
+                </Grid>
                 <Grid item xs={6}>
                     <DeliveryExpensesSummary subtotal={order?.subtotal!} deliveryFee={order?.deliveryFee!} />
 
