@@ -22,6 +22,7 @@ import PrivateRoute from "./PrivateRouter";
 import OrdersPage from "../../feature/orders/OrdersPage";
 import OrderDetails from "../../feature/orders/OrderDetails";
 import CheckoutWrapper from "../../feature/checkout/CheckoutWrapper";
+import Inventory from "../../feature/admin/Inventory";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -71,7 +72,7 @@ function App() {
       <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
       <Route exact path='/' component={HomePage} />
       <Route path={'/(.+)'} render={() => (
-        <Container sx={{mt: 4}}>
+        <Container sx={{ mt: 4 }}>
           <Switch>
             <Route exact path='/catalog' component={Catalog} />
             <Route path="/catalog/:id" component={ProductDetails} />
@@ -82,6 +83,7 @@ function App() {
             <PrivateRoute path="/checkout" component={CheckoutWrapper} />
             <PrivateRoute exact path='/order' component={OrdersPage} />
             <PrivateRoute path="/order/:id" component={OrderDetails} />
+            <PrivateRoute roles={['Admin']} path="/inventory" component={Inventory} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route component={NotFound} />
